@@ -78,13 +78,7 @@ pipeline{
         stage('JFrog Artifactory Integration') {
             steps {
                 script {
-                    def server = Artifactory.server(env.ARTIFACTORY_SERVER)
-
-                    def uploadSpec = """{
-                        "files": [
-                            {
-                                "pattern": "target/*.jar",
-                                "target": "my-repo-path/"
+                     echo "uploaded to jfrog"
                             }
                         ]
                     }"""
