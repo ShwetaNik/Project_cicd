@@ -80,8 +80,7 @@ pipeline{
                 script {
                      echo "uploaded to jfrog"
                             }
-                        ]
-                    }"""
+         }"""
                     def buildInfo = server.upload(
                         spec: uploadSpec,
                         buildName: "my-build",
