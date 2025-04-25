@@ -5,10 +5,7 @@ pipeline{
     agent any
     //agent { label 'Demo' }
 
-    environment {
-        ARTIFACTORY_SERVER = 'Artifactory-Server-ID' // Replace with your Artifactory server ID
-        ARTIFACTORY_CREDS = credentials('artifactory-credentials-id') // Jenkins credentials ID
-    }
+    
     
     parameters{
 
