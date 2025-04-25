@@ -73,6 +73,30 @@ pipeline{
                }
             }
         }
+        stage('JFrog Artifactory Integration') {
+            steps {
+                script {
+                    def server = Artifactory.server(env.ARTIFACTORY_SERVER)
+
+                    def uploadSpec = """{
+                        "files": [
+                            {
+                                "pattern": "target/*.jar",
+                                "target": "my-repo-path/"
+                            }
+                        ]
+                    }"""
+                    def buildInfo = server.upload(
+                        spec: uploadSpec,
+                        buildName: "my-build",
+                        buildNumber: env.BUILD_NUMBER
+                    )
+
+                    server.publishBuildInfo buildInfo
+                }
+            }
+        }
+    
         stage('Docker Image Build'){
          when { expression {  params.action == 'create' } }
             steps{
